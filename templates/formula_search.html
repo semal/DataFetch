@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>搜索PubMed文献中提到的突变位点</h1>
+
+      <p>通过搜索式获取相关的文献摘要和摘要中提及的位点</p>
+    </div>
+  </div>
+  <form method="post" action="/get_result">
+    <div class="form-group form-inline" style="padding-top: 3em">
+      <input class="form-control" type="text" style="width: 60%;" name="formula"
+             placeholder="pubmed search formula, like: ?term=breast+cancer+china+chinese+human+mutation">
+      <button class="btn">搜索</button>
+    </div>
+  </form>
+  <h3>
+    使用过的搜索式
+  </h3>
+  <ul>
+    {% for formula in formulas %}
+    <li><a href="{{ url_for('view_pmid_abstract', formula=formula) }}">{{ formula }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pubmed文献摘要及涉及位点</title>
+
+  <link rel='stylesheet' href={{ url_for('static', filename='css/bootstrap.min.css') }}>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
+
+  <script type='text/javascript' src={{ url_for('static', filename='js/jquery.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap-table.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap-table-zh-CN.min.js') }}></script>
+  <style>
+    footer {
+      height: 5em;
+      background-color: #9d9d9d;
+      padding-top: 2em;
+      text-align: center;
+    }
+
+    .fixed-bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <script>
+    $(function () {
+      function footerPosition() {
+        $("footer").removeClass("fixed-bottom");
+        var contentHeight = document.body.scrollHeight,//网页正文全文高度
+            winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+        if (!(contentHeight > winHeight)) {
+          //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+          $("footer").addClass("fixed-bottom");
+        } else {
+          $("footer").removeClass("fixed-bottom");
+        }
+      }
+
+      footerPosition();
+      $(window).resize(footerPosition);
+      $(window).resize(footerPosition);
+    });
+  </script>
+</head>
+<body>
+<div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="{{ url_for('formula_search') }}" class="navbar-brand">GenoDataFetch</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <!--<li><a href="/plate_feedback">入库与反馈</a></li>-->
+        <!--<li><a href="/search">查询</a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% block body %}
+{% endblock %}
+
+<footer>
+  <div>
+
+    <p>&copy; 健路生物科技有限公司 版权所有 &nbsp;&nbsp;&nbsp;&nbsp;Genowise ALL RIGHTS RESERVED.</p>
+  </div>
+</footer>
+</body>
+</html>
