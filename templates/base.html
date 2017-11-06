@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pubmed文献摘要及涉及位点</title>
+  <title>Data Fetch Tools</title>
 
   <link rel='stylesheet' href={{ url_for('static', filename='css/bootstrap.min.css') }}>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <script type='text/javascript' src={{ url_for('static', filename='js/jquery.min.js') }}></script>
   <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap.min.js') }}></script>
   <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap-table.min.js') }}></script>
   <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap-table-zh-CN.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap.file-input.js') }}></script>
   <style>
     footer {
       height: 5em;
@@ -49,7 +51,7 @@
 <div class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <a href="{{ url_for('formula_search') }}" class="navbar-brand">GenoDataFetch</a>
+      <a href="{{ url_for('index') }}" class="navbar-brand">GenoDataFetch</a>
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -58,8 +60,20 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <!--<li><a href="/plate_feedback">入库与反馈</a></li>-->
-        <!--<li><a href="/search">查询</a></li>-->
+        <li><a href="{{ url_for('pubmed.formula_search') }}">PubMed文献搜索</a></li>
+        <li><a href="{{ url_for('mesh.mesh_index') }}">MeSH表型分类</a></li>
+        <!--<li class="dropdown">-->
+          <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="design">-->
+            <!--自动设计 <span class="caret"></span>-->
+          <!--</a>-->
+          <!--<ul class="dropdown-menu" aria-labelledby="design">-->
+            <!--<li><a href="http://192.168.0.11:9000/SNP_Primer/">SNP Primer</a></li>-->
+            <!--<li><a href="http://192.168.0.11:9000/Sanger_Primer/">Sanger Primer</a></li>-->
+            <!--<li><a href="http://192.168.0.11:9000/TaqMan_probe/">TaqMan Primer</a></li>-->
+            <!--<li><a href="http://192.168.0.11:9000/SNPType_primer/">SNPType Primer</a></li>-->
+            <!--<li><a href="http://192.168.0.11:9000/Plasmid_mut_primer/">Plasmid Primer</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
       </ul>
     </div>
   </div>

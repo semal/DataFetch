@@ -15,3 +15,11 @@ class PaperItem(scrapy.Item):
         input_processor=MapCompose(remove_tags),
         output_processor=Join(),
     )
+
+
+def strip(string):
+    return string.strip()
+
+
+class OMIMTable(scrapy.Item):
+    table = scrapy.Field(output_processor=Join())
