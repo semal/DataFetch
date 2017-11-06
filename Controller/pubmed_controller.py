@@ -138,11 +138,11 @@ def get_abstract_in_db(pmid_list):
 
 def extract_snps_sub(args):
     file_names = os.listdir('result')
-    print args[0]
-    os.system(
-        'java -cp seth-1.3-jar-with-dependencies.jar '
-        'seth.ner.wrapper.SETHNERAppMut "%s" >result/%s.seth' % (args[0], args[1])
-    )
+    if '%s.seth' % args[1] not in file_names:
+        os.system(
+            'java -cp seth-1.3-jar-with-dependencies.jar '
+            'seth.ner.wrapper.SETHNERAppMut "%s" >result/%s.seth' % (args[0], args[1])
+        )
 
 
 def clean_seth_files(pmid_list):
@@ -172,13 +172,15 @@ def extract_snps(formula):
     print 'Get abstract from database...'
     pmid_list, abstract_list = get_abstract_in_db(pmid_list)
     os.chdir('lib/seth')
-    pool = multiprocessing.Pool(10)
+    pool = multiprocessing.Pool(40)
     queue = []
     print 'Generating seth list...'
     for abstract, pmid in zip(abstract_list, pmid_list):
         queue.append((abstract, pmid))
     print 'Start extracting snps...'
     pool.map(extract_snps_sub, queue)
+    pool.close()
+    pool.join()
     print 'Cleaning seth files'
     clean_seth_files(pmid_list)
     os.chdir('../..')
