@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Fetch Tools</title>
+
+  <link rel='stylesheet' href={{ url_for('static', filename='css/bootstrap.min.css') }}>
+  <link rel='stylesheet' href={{ url_for('static', filename='css/custom.css') }}>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <script type='text/javascript' src={{ url_for('static', filename='js/jquery.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap-table.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap-table-zh-CN.min.js') }}></script>
+  <script type='text/javascript' src={{ url_for('static', filename='js/bootstrap.file-input.js') }}></script>
+  <style>
+    footer {
+      height: 5em;
+      background-color: #9d9d9d;
+      padding-top: 2em;
+      text-align: center;
+    }
+
+    .fixed-bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <script>
+    $(function () {
+      function footerPosition() {
+        $("footer").removeClass("fixed-bottom");
+        var contentHeight = document.body.scrollHeight,//网页正文全文高度
+            winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+        if (!(contentHeight > winHeight)) {
+          //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+          $("footer").addClass("fixed-bottom");
+        } else {
+          $("footer").removeClass("fixed-bottom");
+        }
+      }
+
+      footerPosition();
+      $(window).resize(footerPosition);
+      $(window).resize(footerPosition);
+    });
+  </script>
+</head>
+<body>
+<div class="navbar navbar-default" style="background: white;border-radius: 0">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="{{ url_for('index') }}" class="navbar-brand">DataFetch</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('pubmed.formula_search') }}">文献搜索</a></li>
+        <li><a href="{{ url_for('mesh.mesh_index') }}">表型分类</a></li>
+        <li><a href="/download-transcripts">获取转录本</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% block body %}
+{% endblock %}
+
+<footer style="margin-top: 3em;padding-top: 24px">
+  <div>
+    <p>&copy; gzhsss2@163.com 版权所有</p>
+  </div>
+</footer>
+</body>
+</html>

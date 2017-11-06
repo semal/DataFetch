@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+  <form class="form" action="/get-transcripts" method="post">
+    <label for="names">输入对应的转录本编号，如"ENST00000302418"或"NM_002944"，每个编号一行，点击"下载"获取转录本序列。</label>
+    <textarea class="form-control" rows="20" id="names" placeholder="ENST00000302418" name="accessions"></textarea>
+    <button class="btn btn-primary" style="margin-top: 1em" type="submit">下载</button>
+  </form>
+</div>
+{% endblock %}

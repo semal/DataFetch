@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+  <div class="jumbotron">
+    <h2>获取表型的MeSH分支号（Tree Number）</h2>
+
+    <p>通过上传表型列表文件，回传给您每个表型对应的MeSH分支号，利用这个分支号可以建立这些表型的关系树。</p>
+
+    <form class="form-inline" id="phenotypes">
+      <div class="form-group">
+        <input type="file" name="phenotypes" title="请上传您的表型列表文件">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" id="get_result" type="button">提交</button>
+      </div>
+    </form>
+    <p id="result"></p>
+    <i id="icon"></i>
+  </div>
+</div>
+
+<script>
+  $('input[type=file]').bootstrapFileInput();
+  $('.file-inputs').bootstrapFileInput();
+
+  $('#get_result').click(function (event) {
+//    event.preventDefault();
+    var form_data = new FormData($('#phenotypes')[0]);
+    $.ajax(
+        {
+          cache: false,
+          type: 'POST',
+          url: '/upload_mesh_phenotypes',
+          data: form_data,
+          async: false,
+          contentType: false,
+          processData: false,
+          beforeSend: function () {
+            $('#get_result').hide();
+            $("#icon").addClass("fa fa-circle-o-notch fa-spin");
+          },
+          success: function (return_data) {
+            $("#icon").removeClass("fa fa-circle-o-notch fa-spin");
+            $('#result').html('<a href="/download_result"><button class="btn">下载结果</button></a>');
+          },
+          error: function (return_data) {
+            alert('上传失败！');
+          }
+        }
+    )
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container" style="margin-top: -1em">
+  <!--<blockquote class="pull-right">-->
+    <!--<p>In God we trust, all others must bring data.</p>-->
+    <!--<small><cite>W. Edward Deming</cite></small>-->
+  <!--</blockquote>-->
+  <!--<br>-->
+  <h2 class="page-header">项目目的</h2>
+  <p>获取生物信息学相关的数据，提供数据的挖掘和分析服务。</p>
+
+  <h2 class="page-header">已有的服务</h2>
+  <h3>PubMed相关</h3>
+  <p>PubMed是NCBI提供一个文献数据库检索服务。</p>
+  <h4><strong>从文献摘要中抽取位点</strong></h4>
+  <p>提供PubMed搜索式，从搜索到的文献中抓取位点信息，可以浏览文献的标题和摘要，并下载。</p>
+  <h3>MeSH相关</h3>
+  <p>MeSH是一个词条分类系统，通过MeSH可以建立各个词条的关系树。</p>
+  <h4><strong>MeSH表型分类</strong></h4>
+  <p>通过上传表型列表，获取每个表型的分支号，用于建立表型分类树。</p>
+</div>
+{% endblock %}
